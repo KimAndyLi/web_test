@@ -1,0 +1,33 @@
+{% extends "base.html" %}  <!–– Данный block content будет вместо block content в base.html. Данная страница наследуюется от base.html- короче данный код является расширением для base.html -->
+
+{% block content %}
+        <div class="row">
+            <div class="col-4">
+                {%include ('messages.html') %}
+                <form action="{{ url_for('user.process_login') }}" method="POST"  <!-- передача форм method="POST" -->
+                    {{ form.hidden_tag() }}  <!-- ОБЯЗАТЕЛЬНО ДОЛЖЕН БЫТЬ блок, который выводит все скрытые поля в форме -->
+                    <div class="form-group">  <!-- Bootstrap4 формы -->
+                        {{ form.username.label }}  <!-- Выведи текст переменной "username"- то есть 'Имя пользователя' -->
+                        {{ form.username() }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.password.label }}
+                        {{ form.password() }}
+                    </div>
+                    {{ form.submit }}
+                </form>
+            </div> 
+            <div class="col-8">
+               
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    </body>
+</html>
+{% endblock %}

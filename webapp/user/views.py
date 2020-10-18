@@ -24,10 +24,10 @@ def process_login():
     form = LoginForm()
 
     if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
+        user = User.query.filter(User.username == form.username.data).first()
         if user and user.check_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
-            flash('Вы вошли на сайт')
+            flash('Вы успешно вошли на сайт')
             return redirect(get_redirect_target())
 
     flash('Неправильное имя пользователя или пароль')
